@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>Organizações Tabajara</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Fatura de Serviços de Telecomunicações</h1>
+		<hr>
+		<form action="/salvarFatura" method="post">
+			<fieldset>
+				<legend>Dados da Fatura</legend>
+
+				<label for="id">ID:</label><br>
+				<input type="text" name="id" id="id" value="<%= fatura[0].id %>" size="15" readonly="readonly"><br><br>
+				
+				<label for="cpf_cliente">CPF do Cliente:</label><br>
+				<select name="cpf_cliente" id="cpf_cliente" readonly="readonly">
+					<option hidden><%= fatura[0].cpf_cliente %> - <%= clientes[0].nome %></option>
+					<% clientes.forEach((c, index) => { %>
+						<option value="<%= c.cpf %>"><%= c.cpf %> - <%= c.nome %></option>
+					<% }) %>
+				</select>
+				<br><br>
+		
+				<label for="id_servico">ID do Serviço:</label><br>
+				<select name="id_servico" id="id_servico" readonly="readonly">
+					<option hidden><%= fatura[0].id_servico %> - <%= servicos[0].descricao %></option>
+					<% servicos.forEach((s, index) => { %>
+						<option value="<%= s.id %>"><%= s.id %> - <%= s.descricao %></option>
+					<% }) %>
+				</select>
+				<br><br>
+				
+				<label for="data_emissao">Data de Emissão:</label><br>
+				<input type="date" name="data_emissao" id="data_emissao" size="20" value="<%= fatura[0].data_emissao %>"><br><br>
+				
+				<label for="data_vencimento">Data de Vencimento:</label><br>
+				<input type="date" name="data_vencimento" id="data_vencimento" size="20" value="<%= fatura[0].data_vencimento %>">
+			</fieldset><br>
+			
+			<input type="submit" name="salvar" value="Salvar">
+			<input type="reset" name="limpar" value="Limpar">
+		</form>
+	</body>
+</html>

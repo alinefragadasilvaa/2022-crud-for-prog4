@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title>Organizações Tabajara</title>
+		<meta charset="UTF-8">
+	</head>
+	<body>
+		<h1>Lista de Serviços</h1>
+		<hr>
+		<form action="/filtrarServico" method="post">
+				
+			<label for="descricao">Descrição (use % como caracter coringa):</label><br>
+			<input type="text" name="descricao" id="descricao" size="30"><br><br>
+			
+			<input type="submit" name="filtrar" value="Filtrar">
+			
+		</form>
+		
+		<a href="/formServico">Novo Serviço</a> &nbsp;
+		<a href="/">Voltar para Tela Principal</a>
+
+		<form action="/gerenciarServico" method="post">
+			<input type="submit" name="acao" value="Excluir">
+			<input type="submit" name="acao" value="Atualizar">
+
+			<table border="1">
+				<tr>
+					<th>Seleção</th>
+					<th>Descrição</th>
+					<th>Tipo de Serviço</th>
+					<th>Tempo de Realização</th>
+					<th>Data de Realização</th>
+					<th>Valor da Hora</th>
+				</tr>
+				<% servicos.forEach((s, index) => { %>
+				<tr>
+					<td><input type="radio" name="id" value="<%= s.id %>"></td>
+					<td><%= s.descricao %></td>
+					<td><%= s.tipo_servico %></td>
+					<td><%= s.tempo_realizacao %></td>
+					<td><%= s.data_realizacao %></td>
+					<td><%= s.valor_hora %></td>
+				</tr>
+				<% }) %>
+			</table>
+		</form>
+	</body>
+</html>
